@@ -2,33 +2,46 @@ package zaperr
 
 import "go.uber.org/zap"
 
-func LogError(logger *zap.Logger, err error, message string) error {
+type Zaperr struct {
+	logger *zap.Logger
+}
+
+func NewZaperr(logger *zap.Logger) *Zaperr {
+	return &Zaperr{
+		logger: logger,
+	}
+}
+
+func (s *Zaperr) LogError(err error, message string) error {
 	if err != nil {
-		if message == "" {
-			message = "Unknown error"
-		}
-		logger.Error(message, zap.Error(err))
+		s.logger.Error(message, zap.Error(err))
 		return err
 	}
 	return nil
 }
 
-func LogPanicError(logger *zap.Logger, err error, message string) {
+func (s *Zaperr) LogPanicError(err error, message string) {
 	if err != nil {
-		if message == "" {
-			message = "Unknown panic"
-		}
-		logger.Panic(message, zap.Error(err))
+		s.logger.Panic(message, zap.Error(err))
 	}
 }
 
-func LogWarningError(logger *zap.Logger, err error, message string) error {
+func (s *Zaperr) LogWarningError(err error, message string) error {
 	if err != nil {
-		if message == "" {
-			message = "Unknown warning"
-		}
-		logger.Warn(message, zap.Error(err))
+		s.logger.Warn(message, zap.Error(err))
 		return err
 	}
 	return nil
+}
+
+func (s *Zaperr) LogDebugError(err error, message string) {
+	if err != nil {
+		s.logger.Debug(message, zap.Error(err))
+	}
+}
+
+func (s *Zaperr) LogInfoError(err error, message string) {
+	if err != nil {
+		s.logger.Info(message, zap.Error(err))
+	}
 }
