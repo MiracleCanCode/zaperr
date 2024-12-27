@@ -8,3 +8,5 @@ To install the package, run:
 
 `go get -u github.com/MiracleCanCode/zaperr`
 
+## Example usage
+
