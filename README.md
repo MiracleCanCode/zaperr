@@ -6,6 +6,5 @@ A simple Go package for logging errors using Uber's zap logger.
 
 To install the package, run:
 
-```bash
-go get -u github.com/MiracleCanCode/zaperr
-```
+`go get -u github.com/MiracleCanCode/zaperr`
+
