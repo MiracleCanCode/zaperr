@@ -1,6 +1,8 @@
 package zaperr
 
-import "go.uber.org/zap"
+import (
+	"go.uber.org/zap"
+)
 
 type Zaperr struct {
 	logger *zap.Logger
@@ -22,6 +24,7 @@ func (s *Zaperr) LogError(err error, message string, additionalLogic ...func()) 
 		}
 		return err
 	}
+
 	return nil
 }
 
